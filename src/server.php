@@ -31,8 +31,9 @@ $logger = new Logger\StdOut();
 
 $twircd = new Server(
     $logger,
-    new Irc\Server( $logger, '127.0.0.1', 6667 ),
-    new Mapper\Ident( $logger )
+    new Irc\Server( $logger, '127.0.0.1', 13377 ),
+    new Mapper\Ident( $logger ),
+    'post '
 );
 $twircd->run();
 
