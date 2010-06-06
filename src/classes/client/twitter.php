@@ -598,6 +598,9 @@ class Twitter extends \TwIRCd\Client
         $percentTime       = $remainingTime / 3600;
         $percentRequests   = $remainingRequests / $requestsPerHour;
 
+        $this->logger->log( E_NOTICE, "[RATE] Remaining requests before being limited: {$remainingRequests}." );
+        $this->logger->log( E_NOTICE, "[RATE] Limit will be reset in  {$remainingTime} seconds." );
+
         // The additional factor of 1.1 is used to ensure, that we really do 
         // not touch the rate limit.
         $this->queueFactor = max( 1, ( $percentTime / $percentRequests ) * 1.1 );
