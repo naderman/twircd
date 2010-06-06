@@ -291,7 +291,7 @@ class Twitter extends \TwIRCd\Client
                 }
             }
 
-            $cursor = isset( $json['next_cursor'] ) ? $json['next_cursor'] : false;
+            $cursor = isset( $json['next_cursor_str'] ) ? $json['next_cursor_str'] : false;
         } while ( $cursor );
 
         return $friends;
