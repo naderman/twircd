@@ -291,7 +291,7 @@ class Twitter extends \TwIRCd\Client
                 }
             }
 
-            $cursor = isset( $json['next_cursor'] ) ? $json['next_cursor'] : false;
+            $cursor = isset( $json['next_cursor_str'] ) ? $json['next_cursor_str'] : false;
         } while ( $cursor );
 
         return $friends;
@@ -598,6 +598,9 @@ class Twitter extends \TwIRCd\Client
 
         $percentTime       = $remainingTime / 3600;
         $percentRequests   = $remainingRequests / $requestsPerHour;
+
+        $this->logger->log( E_NOTICE, "[RATE] Remaining requests before being limited: {$remainingRequests}." );
+        $this->logger->log( E_NOTICE, "[RATE] Limit will be reset in  {$remainingTime} seconds." );
 
         // The additional factor of 1.1 is used to ensure, that we really do 
         // not touch the rate limit.
